@@ -3,4 +3,5 @@ import { authController } from "./auth.controller";
 
 const router = Router();
 
-router.post("/signup", authController.signUp);
+router.post("/signUp", authController.signUp);
+router.post("/signIn", authController.signIn);
