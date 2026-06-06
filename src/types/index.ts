@@ -1,0 +1,1 @@
+export type ROLES = "admin" | "agent" | "user";
