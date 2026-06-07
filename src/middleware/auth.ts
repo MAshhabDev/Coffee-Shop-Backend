@@ -4,7 +4,7 @@ import jwt, { type JwtPayload } from "jsonwebtoken";
 import { pool } from "../db";
 import type { ROLES } from "../types";
 
-const auth = (...roles: ROLES[]) => {
+export const auth = (...roles: ROLES[]) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       const token = req.headers.authorization;
