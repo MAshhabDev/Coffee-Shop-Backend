@@ -3,7 +3,7 @@ import { ordersService } from "./orders.service";
 
 const createOrder = async (req: Request, res: Response) => {
   try {
-    const user_id: string = req.user?.id;
+    const user_id: number = req.user?.id;
     const { total_price, order_items } = req.body;
 
     const result = await ordersService.createOrdersInToDb(
@@ -26,14 +26,13 @@ const createOrder = async (req: Request, res: Response) => {
   }
 };
 
-
 const getMyOrder = async (req: Request, res: Response) => {
   try {
-    const user_id: string = req.user?.id;
+    const user_id: number = req.user?.id;
 
     const result = await ordersService.getMyOrdersInToDb(user_id);
 
-    res.status(201).json({
+    res.status(200).json({
       success: true,
       message: "My orders fetched successfully!",
       data: result,
@@ -47,13 +46,11 @@ const getMyOrder = async (req: Request, res: Response) => {
   }
 };
 
-
 const getAllOrder = async (req: Request, res: Response) => {
   try {
-
     const result = await ordersService.getAllOrdersInToDb();
 
-    res.status(201).json({
+    res.status(200).json({
       success: true,
       message: "All orders fetched successfully!",
       data: result,
@@ -67,4 +64,4 @@ const getAllOrder = async (req: Request, res: Response) => {
   }
 };
 
-export const orderController = { createOrder,getMyOrder,getAllOrder };
+export const orderController = { createOrder, getMyOrder, getAllOrder };

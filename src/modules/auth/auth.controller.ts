@@ -4,16 +4,15 @@ import { authService } from "./auth.service";
 const signUp = async (req: Request, res: Response) => {
   try {
     const result = await authService.signUpInToDb(req.body);
-    res.status(200).json({
+    res.status(201).json({
       success: true,
       message: "User Created Successfully",
       data: result,
     });
-  } catch (error) {
+  } catch (error: any) {
     res.status(400).json({
       success: false,
-      message: "User did not created",
-      data: [],
+      message: error.message || "User registration failed!",
     });
   }
 };
@@ -21,21 +20,17 @@ const signUp = async (req: Request, res: Response) => {
 const signIn = async (req: Request, res: Response) => {
   try {
     const result = await authService.logInToDb(req.body);
-
-
-  
-
     res.status(200).json({
       success: true,
       message: "User login successfully!",
       data: result,
     });
   } catch (error: any) {
-    res.status(500).json({
+    res.status(401).json({
       success: false,
       message: error.message,
-      error: error,
     });
   }
 };
-export const authController = { signUp,signIn };
+
+export const authController = { signUp, signIn };

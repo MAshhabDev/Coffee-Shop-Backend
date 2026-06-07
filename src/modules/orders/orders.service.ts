@@ -1,7 +1,7 @@
 import { pool } from "../../db";
 
 const createOrdersInToDb = async (
-  user_id: string,
+  user_id: number,
   total_price: number,
   order_items: any[],
 ) => {
@@ -24,7 +24,7 @@ const createOrdersInToDb = async (
   return { order_id, total_price, status: "pending" };
 };
 
-const getMyOrdersInToDb = async (user_id:string) => {
+const getMyOrdersInToDb = async (user_id:number) => {
   const result = await pool.query(
     ` SELECT * FROM ORDERS WHERE user_id=$1`,
     [user_id],
